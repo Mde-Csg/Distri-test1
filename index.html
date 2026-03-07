@@ -47,16 +47,17 @@
         <script src="data/PLUZONAGE_4.js"></script>
         <script src="data/PLUPRESCRIPTION_5.js"></script>
         <script src="data/PERIMETRETOURCARREE_6.js"></script>
-        <script src="data/SEPARATIONCADASTRALE_7.js"></script>
-        <script src="data/BATIMENTS_9.js"></script>
-        <script src="data/Oleoduc_10.js"></script>
-        <script src="data/ROUTES_11.js"></script>
-        <script src="data/ZONEPROTEGEE_12.js"></script>
-        <script src="data/RIVIERES_13.js"></script>
+        <script src="data/SEPARATIONCADASTRALE_8.js"></script>
+        <script src="data/PROPRIETES_PUBLIQUES_10.js"></script>
+        <script src="data/BATIMENTS_11.js"></script>
+        <script src="data/Oleoduc_12.js"></script>
+        <script src="data/ROUTES_13.js"></script>
+        <script src="data/ZONEPROTEGEE_14.js"></script>
+        <script src="data/RIVIERES_15.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:22, minZoom:1
-        }).fitBounds([[45.990444208828805,4.8904303113893866],[46.00510260025959,4.9289620870711355]]);
+        }).fitBounds([[45.99055907458808,4.89131236575414],[46.00430135095235,4.925819861857287]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -874,10 +875,10 @@
         function pop_PLUPRESCRIPTION_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['gid'] !== null ? autolinker.link(String(feature.properties['gid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="gid" colspan="2"><strong>gid</strong><br />' + (feature.properties['gid'] !== null ? autolinker.link(String(feature.properties['gid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['insee'] !== null ? autolinker.link(String(feature.properties['insee']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="insee" colspan="2"><strong>insee</strong><br />' + (feature.properties['insee'] !== null ? autolinker.link(String(feature.properties['insee']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">libelle</th>\
@@ -1103,7 +1104,21 @@
             styles: [style_PERIMETRETOURCARREE_6_0,style_PERIMETRETOURCARREE_6_1,style_PERIMETRETOURCARREE_6_2,]
         });
         bounds_group.addLayer(layer_PERIMETRETOURCARREE_6);
-        function pop_SEPARATIONCADASTRALE_7(feature, layer) {
+        map.createPane('pane_BANdition20260306_7');
+        map.getPane('pane_BANdition20260306_7').style.zIndex = 407;
+        var layer_BANdition20260306_7 = L.WMS.layer("https://data.geopf.fr/wms-v/ows?version=1.3.0", "BAN.DATA.GOUV", {
+            pane: 'pane_BANdition20260306_7',
+            format: 'image/png',
+            uppercase: true,
+            transparent: true,
+            continuousWorld : true,
+            tiled: true,
+            info_format: 'text/html',
+            opacity: 1,
+            identify: false,
+            attribution: '',
+        });
+        function pop_SEPARATIONCADASTRALE_8(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['gid'] !== null ? autolinker.link(String(feature.properties['gid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -1115,7 +1130,8 @@
                         <td colspan="2">' + (feature.properties['etat'] !== null ? autolinker.link(String(feature.properties['etat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['etatimmeub'] !== null ? autolinker.link(String(feature.properties['etatimmeub']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">etatimmeub</th>\
+                        <td class="visible-with-data" id="etatimmeub">' + (feature.properties['etatimmeub'] !== null ? autolinker.link(String(feature.properties['etatimmeub']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['etatimme_1'] !== null ? autolinker.link(String(feature.properties['etatimme_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -1144,9 +1160,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_SEPARATIONCADASTRALE_7_0() {
+        function style_SEPARATIONCADASTRALE_8_0() {
             return {
-                pane: 'pane_SEPARATIONCADASTRALE_7',
+                pane: 'pane_SEPARATIONCADASTRALE_8',
                 opacity: 1,
                 color: 'rgba(220,135,52,1.0)',
                 dashArray: '2.0,1.0',
@@ -1157,35 +1173,165 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_SEPARATIONCADASTRALE_7');
-        map.getPane('pane_SEPARATIONCADASTRALE_7').style.zIndex = 407;
-        map.getPane('pane_SEPARATIONCADASTRALE_7').style['mix-blend-mode'] = 'normal';
-        var layer_SEPARATIONCADASTRALE_7 = new L.geoJson(json_SEPARATIONCADASTRALE_7, {
+        map.createPane('pane_SEPARATIONCADASTRALE_8');
+        map.getPane('pane_SEPARATIONCADASTRALE_8').style.zIndex = 408;
+        map.getPane('pane_SEPARATIONCADASTRALE_8').style['mix-blend-mode'] = 'normal';
+        var layer_SEPARATIONCADASTRALE_8 = new L.geoJson(json_SEPARATIONCADASTRALE_8, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_SEPARATIONCADASTRALE_7',
-            layerName: 'layer_SEPARATIONCADASTRALE_7',
-            pane: 'pane_SEPARATIONCADASTRALE_7',
-            onEachFeature: pop_SEPARATIONCADASTRALE_7,
-            style: style_SEPARATIONCADASTRALE_7_0,
+            dataVar: 'json_SEPARATIONCADASTRALE_8',
+            layerName: 'layer_SEPARATIONCADASTRALE_8',
+            pane: 'pane_SEPARATIONCADASTRALE_8',
+            onEachFeature: pop_SEPARATIONCADASTRALE_8,
+            style: style_SEPARATIONCADASTRALE_8_0,
         });
-        bounds_group.addLayer(layer_SEPARATIONCADASTRALE_7);
-        map.addLayer(layer_SEPARATIONCADASTRALE_7);
-        map.createPane('pane_Parcellairecadastraldition20251201_8');
-        map.getPane('pane_Parcellairecadastraldition20251201_8').style.zIndex = 408;
-        var layer_Parcellairecadastraldition20251201_8 = L.WMS.layer("https://data.geopf.fr/wms-v/ows?version=1.3.0", "CADASTRALPARCELS.PCI_VECTEUR", {
-            pane: 'pane_Parcellairecadastraldition20251201_8',
+        bounds_group.addLayer(layer_SEPARATIONCADASTRALE_8);
+        map.addLayer(layer_SEPARATIONCADASTRALE_8);
+        map.createPane('pane_Parcellairecadastraldition20251201_9');
+        map.getPane('pane_Parcellairecadastraldition20251201_9').style.zIndex = 409;
+        var layer_Parcellairecadastraldition20251201_9 = L.WMS.layer("https://data.geopf.fr/wms-v/ows?version=1.3.0", "CADASTRALPARCELS.PCI_VECTEUR", {
+            pane: 'pane_Parcellairecadastraldition20251201_9',
             format: 'image/png',
             uppercase: true,
             transparent: true,
             continuousWorld : true,
             tiled: true,
             info_format: 'text/html',
-            opacity: 1,
+            opacity: 0,
             identify: false,
             attribution: '',
         });
-        function pop_BATIMENTS_9(feature, layer) {
+        function pop_PROPRIETES_PUBLIQUES_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gid'] !== null ? autolinker.link(String(feature.properties['gid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['insee'] !== null ? autolinker.link(String(feature.properties['insee']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">nomprp</th>\
+                        <td class="visible-with-data" id="nomprp">' + (feature.properties['nomprp'] !== null ? autolinker.link(String(feature.properties['nomprp']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['typeprp'] !== null ? autolinker.link(String(feature.properties['typeprp']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_PROPRIETES_PUBLIQUES_10_0(feature) {
+            switch(String(feature.properties['nomprp'])) {
+                case 'COMMUNE D AMBERIEUX EN DOMBES':
+                    return {
+                pane: 'pane_PROPRIETES_PUBLIQUES_10',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.664)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,25,28,0.664)',
+                interactive: false,
+            }
+                    break;
+                case 'DYNACITE OFFICE PUBLIC DE L\'HABITAT DE L\'AIN':
+                    return {
+                pane: 'pane_PROPRIETES_PUBLIQUES_10',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.664)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(245,144,83,0.664)',
+                interactive: false,
+            }
+                    break;
+                case 'ETABLISSEMENT PUBLIC FONCIER DE L\'AIN':
+                    return {
+                pane: 'pane_PROPRIETES_PUBLIQUES_10',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.664)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,223,153,0.664)',
+                interactive: false,
+            }
+                    break;
+                case 'GFA FERME DU ROZAY':
+                    return {
+                pane: 'pane_PROPRIETES_PUBLIQUES_10',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.664)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(221,241,180,0.664)',
+                interactive: false,
+            }
+                    break;
+                case 'LES UTILISATEURS DU CHEMIN CADASTRE AC33':
+                    return {
+                pane: 'pane_PROPRIETES_PUBLIQUES_10',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.664)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(145,203,168,0.664)',
+                interactive: false,
+            }
+                    break;
+                case 'SEM DE CONSTRUCTION DU DPT DE L AIN':
+                    return {
+                pane: 'pane_PROPRIETES_PUBLIQUES_10',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.664)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(43,131,186,0.664)',
+                interactive: false,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_PROPRIETES_PUBLIQUES_10');
+        map.getPane('pane_PROPRIETES_PUBLIQUES_10').style.zIndex = 410;
+        map.getPane('pane_PROPRIETES_PUBLIQUES_10').style['mix-blend-mode'] = 'normal';
+        var layer_PROPRIETES_PUBLIQUES_10 = new L.geoJson(json_PROPRIETES_PUBLIQUES_10, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_PROPRIETES_PUBLIQUES_10',
+            layerName: 'layer_PROPRIETES_PUBLIQUES_10',
+            pane: 'pane_PROPRIETES_PUBLIQUES_10',
+            onEachFeature: pop_PROPRIETES_PUBLIQUES_10,
+            style: style_PROPRIETES_PUBLIQUES_10_0,
+        });
+        bounds_group.addLayer(layer_PROPRIETES_PUBLIQUES_10);
+        function pop_BATIMENTS_11(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -1330,7 +1476,7 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        var pattern_BATIMENTS_9_0 = new L.StripePattern({
+        var pattern_BATIMENTS_11_0 = new L.StripePattern({
             weight: 0.3,
             spaceWeight: 10.0,
             color: '#000000',
@@ -1338,19 +1484,19 @@
             spaceOpacity: 0,
             angle: 315
         });
-        pattern_BATIMENTS_9_0.addTo(map);
-        function style_BATIMENTS_9_0() {
+        pattern_BATIMENTS_11_0.addTo(map);
+        function style_BATIMENTS_11_0() {
             return {
-                pane: 'pane_BATIMENTS_9',
+                pane: 'pane_BATIMENTS_11',
                 stroke: false,
                 fillOpacity: 1,
-                fillPattern: pattern_BATIMENTS_9_0,
+                fillPattern: pattern_BATIMENTS_11_0,
                 interactive: false,
             }
         }
-        function style_BATIMENTS_9_1() {
+        function style_BATIMENTS_11_1() {
             return {
-                pane: 'pane_BATIMENTS_9',
+                pane: 'pane_BATIMENTS_11',
                 opacity: 1,
                 color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
@@ -1361,21 +1507,21 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_BATIMENTS_9');
-        map.getPane('pane_BATIMENTS_9').style.zIndex = 409;
-        map.getPane('pane_BATIMENTS_9').style['mix-blend-mode'] = 'normal';
-        var layer_BATIMENTS_9 = new L.geoJson.multiStyle(json_BATIMENTS_9, {
+        map.createPane('pane_BATIMENTS_11');
+        map.getPane('pane_BATIMENTS_11').style.zIndex = 411;
+        map.getPane('pane_BATIMENTS_11').style['mix-blend-mode'] = 'normal';
+        var layer_BATIMENTS_11 = new L.geoJson.multiStyle(json_BATIMENTS_11, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_BATIMENTS_9',
-            layerName: 'layer_BATIMENTS_9',
-            pane: 'pane_BATIMENTS_9',
-            onEachFeature: pop_BATIMENTS_9,
-            styles: [style_BATIMENTS_9_0,style_BATIMENTS_9_1,]
+            dataVar: 'json_BATIMENTS_11',
+            layerName: 'layer_BATIMENTS_11',
+            pane: 'pane_BATIMENTS_11',
+            onEachFeature: pop_BATIMENTS_11,
+            styles: [style_BATIMENTS_11_0,style_BATIMENTS_11_1,]
         });
-        bounds_group.addLayer(layer_BATIMENTS_9);
-        map.addLayer(layer_BATIMENTS_9);
-        function pop_Oleoduc_10(feature, layer) {
+        bounds_group.addLayer(layer_BATIMENTS_11);
+        map.addLayer(layer_BATIMENTS_11);
+        function pop_Oleoduc_12(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['full_id'] !== null ? autolinker.link(String(feature.properties['full_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -1419,9 +1565,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Oleoduc_10_0() {
+        function style_Oleoduc_12_0() {
             return {
-                pane: 'pane_Oleoduc_10',
+                pane: 'pane_Oleoduc_12',
                 opacity: 1,
                 color: 'rgba(64,46,46,0.6980392156862745)',
                 dashArray: '',
@@ -1432,21 +1578,21 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_Oleoduc_10');
-        map.getPane('pane_Oleoduc_10').style.zIndex = 410;
-        map.getPane('pane_Oleoduc_10').style['mix-blend-mode'] = 'normal';
-        var layer_Oleoduc_10 = new L.geoJson(json_Oleoduc_10, {
+        map.createPane('pane_Oleoduc_12');
+        map.getPane('pane_Oleoduc_12').style.zIndex = 412;
+        map.getPane('pane_Oleoduc_12').style['mix-blend-mode'] = 'normal';
+        var layer_Oleoduc_12 = new L.geoJson(json_Oleoduc_12, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_Oleoduc_10',
-            layerName: 'layer_Oleoduc_10',
-            pane: 'pane_Oleoduc_10',
-            onEachFeature: pop_Oleoduc_10,
-            style: style_Oleoduc_10_0,
+            dataVar: 'json_Oleoduc_12',
+            layerName: 'layer_Oleoduc_12',
+            pane: 'pane_Oleoduc_12',
+            onEachFeature: pop_Oleoduc_12,
+            style: style_Oleoduc_12_0,
         });
-        bounds_group.addLayer(layer_Oleoduc_10);
-        map.addLayer(layer_Oleoduc_10);
-        function pop_ROUTES_11(feature, layer) {
+        bounds_group.addLayer(layer_Oleoduc_12);
+        map.addLayer(layer_Oleoduc_12);
+        function pop_ROUTES_13(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['full_id'] !== null ? autolinker.link(String(feature.properties['full_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -1558,9 +1704,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_ROUTES_11_0() {
+        function style_ROUTES_13_0() {
             return {
-                pane: 'pane_ROUTES_11',
+                pane: 'pane_ROUTES_13',
                 opacity: 1,
                 color: 'rgba(140,0,154,1.0)',
                 dashArray: '',
@@ -1571,21 +1717,21 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_ROUTES_11');
-        map.getPane('pane_ROUTES_11').style.zIndex = 411;
-        map.getPane('pane_ROUTES_11').style['mix-blend-mode'] = 'normal';
-        var layer_ROUTES_11 = new L.geoJson(json_ROUTES_11, {
+        map.createPane('pane_ROUTES_13');
+        map.getPane('pane_ROUTES_13').style.zIndex = 413;
+        map.getPane('pane_ROUTES_13').style['mix-blend-mode'] = 'normal';
+        var layer_ROUTES_13 = new L.geoJson(json_ROUTES_13, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_ROUTES_11',
-            layerName: 'layer_ROUTES_11',
-            pane: 'pane_ROUTES_11',
-            onEachFeature: pop_ROUTES_11,
-            style: style_ROUTES_11_0,
+            dataVar: 'json_ROUTES_13',
+            layerName: 'layer_ROUTES_13',
+            pane: 'pane_ROUTES_13',
+            onEachFeature: pop_ROUTES_13,
+            style: style_ROUTES_13_0,
         });
-        bounds_group.addLayer(layer_ROUTES_11);
-        map.addLayer(layer_ROUTES_11);
-        function pop_ZONEPROTEGEE_12(feature, layer) {
+        bounds_group.addLayer(layer_ROUTES_13);
+        map.addLayer(layer_ROUTES_13);
+        function pop_ZONEPROTEGEE_14(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['full_id'] !== null ? autolinker.link(String(feature.properties['full_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -1631,9 +1777,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_ZONEPROTEGEE_12_0() {
+        function style_ZONEPROTEGEE_14_0() {
             return {
-                pane: 'pane_ZONEPROTEGEE_12',
+                pane: 'pane_ZONEPROTEGEE_14',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1646,20 +1792,20 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_ZONEPROTEGEE_12');
-        map.getPane('pane_ZONEPROTEGEE_12').style.zIndex = 412;
-        map.getPane('pane_ZONEPROTEGEE_12').style['mix-blend-mode'] = 'normal';
-        var layer_ZONEPROTEGEE_12 = new L.geoJson(json_ZONEPROTEGEE_12, {
+        map.createPane('pane_ZONEPROTEGEE_14');
+        map.getPane('pane_ZONEPROTEGEE_14').style.zIndex = 414;
+        map.getPane('pane_ZONEPROTEGEE_14').style['mix-blend-mode'] = 'normal';
+        var layer_ZONEPROTEGEE_14 = new L.geoJson(json_ZONEPROTEGEE_14, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_ZONEPROTEGEE_12',
-            layerName: 'layer_ZONEPROTEGEE_12',
-            pane: 'pane_ZONEPROTEGEE_12',
-            onEachFeature: pop_ZONEPROTEGEE_12,
-            style: style_ZONEPROTEGEE_12_0,
+            dataVar: 'json_ZONEPROTEGEE_14',
+            layerName: 'layer_ZONEPROTEGEE_14',
+            pane: 'pane_ZONEPROTEGEE_14',
+            onEachFeature: pop_ZONEPROTEGEE_14,
+            style: style_ZONEPROTEGEE_14_0,
         });
-        bounds_group.addLayer(layer_ZONEPROTEGEE_12);
-        function pop_RIVIERES_13(feature, layer) {
+        bounds_group.addLayer(layer_ZONEPROTEGEE_14);
+        function pop_RIVIERES_15(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['full_id'] !== null ? autolinker.link(String(feature.properties['full_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -1777,9 +1923,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_RIVIERES_13_0() {
+        function style_RIVIERES_15_0() {
             return {
-                pane: 'pane_RIVIERES_13',
+                pane: 'pane_RIVIERES_15',
                 opacity: 1,
                 color: 'rgba(12,10,240,0.7098039215686275)',
                 dashArray: '',
@@ -1790,39 +1936,94 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_RIVIERES_13');
-        map.getPane('pane_RIVIERES_13').style.zIndex = 413;
-        map.getPane('pane_RIVIERES_13').style['mix-blend-mode'] = 'normal';
-        var layer_RIVIERES_13 = new L.geoJson(json_RIVIERES_13, {
+        map.createPane('pane_RIVIERES_15');
+        map.getPane('pane_RIVIERES_15').style.zIndex = 415;
+        map.getPane('pane_RIVIERES_15').style['mix-blend-mode'] = 'normal';
+        var layer_RIVIERES_15 = new L.geoJson(json_RIVIERES_15, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_RIVIERES_13',
-            layerName: 'layer_RIVIERES_13',
-            pane: 'pane_RIVIERES_13',
-            onEachFeature: pop_RIVIERES_13,
-            style: style_RIVIERES_13_0,
+            dataVar: 'json_RIVIERES_15',
+            layerName: 'layer_RIVIERES_15',
+            pane: 'pane_RIVIERES_15',
+            onEachFeature: pop_RIVIERES_15,
+            style: style_RIVIERES_15_0,
         });
-        bounds_group.addLayer(layer_RIVIERES_13);
-        map.addLayer(layer_RIVIERES_13);
+        bounds_group.addLayer(layer_RIVIERES_15);
+        map.addLayer(layer_RIVIERES_15);
+        const url = {"Nominatim OSM": "https://nominatim.openstreetmap.org/search?format=geojson&addressdetails=1&",
+        "France BAN": "https://api-adresse.data.gouv.fr/search/?"}
+        var photonControl = L.control.photon({
+            url: url["France BAN"],
+            feedbackLabel: '',
+            position: 'topleft',
+            includePosition: true,
+            initial: true,
+            // resultsHandler: myHandler,
+        }).addTo(map);
+        photonControl._container.childNodes[0].style.borderRadius="10px"
+        // Create a variable to store the geoJSON data
+        var x = null;
+        // Create a variable to store the marker
+        var marker = null;
+        // Add an event listener to the Photon control to create a marker from the returned geoJSON data
+        var z = null;
+        photonControl.on('selected', function(e) {
+            console.log(photonControl.search.resultsContainer);
+            if (x != null) {
+                map.removeLayer(obj3.marker);
+                map.removeLayer(x);
+            }
+            obj2.gcd = e.choice;
+            x = L.geoJSON(obj2.gcd).addTo(map);
+            var label = typeof obj2.gcd.properties.label === 'undefined' ? obj2.gcd.properties.display_name : obj2.gcd.properties.label;
+            obj3.marker = L.marker(x.getLayers()[0].getLatLng()).bindPopup(label).addTo(map);
+            map.setView(x.getLayers()[0].getLatLng(), 17);
+            z = typeof e.choice.properties.label === 'undefined'? e.choice.properties.display_name : e.choice.properties.label;
+            console.log(e);
+            e.target.input.value = z;
+        });
+        var search = document.getElementsByClassName("leaflet-photon leaflet-control")[0];
+        search.classList.add("leaflet-control-search")
+        search.style.display = "flex";
+        search.style.backgroundColor="rgba(255,255,255,0.5)" 
+
+        // Create the new button element
+        var button = document.createElement("div");
+        button.id = "gcd-button-control";
+        button.className = "gcd-gl-btn fa fa-search search-button";
+
+        // Insert the button at the beginning of the search control
+        search.insertBefore(button, search.firstChild);
+        last = search.lastChild;
+        last.style.display = "none";
+        button.addEventListener("click", function (e) {
+            if (last.style.display === "none") {
+                last.style.display = "block";
+            } else {
+                last.style.display = "none";
+            }
+        });
         var overlaysTree = [
-        {label: '<b>AUTRES ELEMENTS</b>',  selectAllCheckbox: true, children: [
-            {label: '<img src="legend/RIVIERES_13.png" /> RIVIERES', layer: layer_RIVIERES_13},
-            {label: '<img src="legend/ZONEPROTEGEE_12.png" /> ZONE PROTEGEE', layer: layer_ZONEPROTEGEE_12},
-            {label: '<img src="legend/ROUTES_11.png" /> ROUTES', layer: layer_ROUTES_11},
-            {label: '<img src="legend/Oleoduc_10.png" /> Oleoduc', layer: layer_Oleoduc_10},
-            {label: '<img src="legend/BATIMENTS_9.png" /> BATIMENTS', layer: layer_BATIMENTS_9},]},
-        {label: '<b>CADASTRE</b>',  selectAllCheckbox: true, children: [
-            {label: "Parcellaire cadastral édition : 2025-12-01", layer: layer_Parcellairecadastraldition20251201_8},
-            {label: '<img src="legend/SEPARATIONCADASTRALE_7.png" /> SEPARATION CADASTRALE', layer: layer_SEPARATIONCADASTRALE_7},]},
-        {label: '<b>URBANISME</b>',  selectAllCheckbox: true, children: [
+        {label: '<b>AUTRES ELEMENTS</b>', collapsed: true, selectAllCheckbox: true, children: [
+            {label: '<img src="legend/RIVIERES_15.png" /> RIVIERES', layer: layer_RIVIERES_15},
+            {label: '<img src="legend/ZONEPROTEGEE_14.png" /> ZONE PROTEGEE', layer: layer_ZONEPROTEGEE_14},
+            {label: '<img src="legend/ROUTES_13.png" /> ROUTES', layer: layer_ROUTES_13},
+            {label: '<img src="legend/Oleoduc_12.png" /> Oleoduc', layer: layer_Oleoduc_12},
+            {label: '<img src="legend/BATIMENTS_11.png" /> BATIMENTS', layer: layer_BATIMENTS_11},
+            {label: 'PROPRIETES_PUBLIQUES<br /><table><tr><td style="text-align: center;"><img src="legend/PROPRIETES_PUBLIQUES_10_COMMUNEDAMBERIEUXENDOMBES0.png" /></td><td>COMMUNE D AMBERIEUX EN DOMBES</td></tr><tr><td style="text-align: center;"><img src="legend/PROPRIETES_PUBLIQUES_10_DYNACITEOFFICEPUBLICDELHABITATDELAIN1.png" /></td><td>DYNACITE OFFICE PUBLIC DE L\'HABITAT DE L\'AIN</td></tr><tr><td style="text-align: center;"><img src="legend/PROPRIETES_PUBLIQUES_10_ETABLISSEMENTPUBLICFONCIERDELAIN2.png" /></td><td>ETABLISSEMENT PUBLIC FONCIER DE L\'AIN</td></tr><tr><td style="text-align: center;"><img src="legend/PROPRIETES_PUBLIQUES_10_GFAFERMEDUROZAY3.png" /></td><td>GFA FERME DU ROZAY</td></tr><tr><td style="text-align: center;"><img src="legend/PROPRIETES_PUBLIQUES_10_LESUTILISATEURSDUCHEMINCADASTREAC334.png" /></td><td>LES UTILISATEURS DU CHEMIN CADASTRE AC33</td></tr><tr><td style="text-align: center;"><img src="legend/PROPRIETES_PUBLIQUES_10_SEMDECONSTRUCTIONDUDPTDELAIN5.png" /></td><td>SEM DE CONSTRUCTION DU DPT DE L AIN</td></tr></table>', layer: layer_PROPRIETES_PUBLIQUES_10},]},
+        {label: '<b>CADASTRE</b>', collapsed: true, selectAllCheckbox: true, children: [
+            {label: "Parcellaire cadastral édition : 2025-12-01", layer: layer_Parcellairecadastraldition20251201_9},
+            {label: '<img src="legend/SEPARATIONCADASTRALE_8.png" /> SEPARATION CADASTRALE', layer: layer_SEPARATIONCADASTRALE_8},]},
+        {label: '<b>URBANISME</b>', collapsed: true, selectAllCheckbox: true, children: [
+            {label: "BAN édition 2026-03-06", layer: layer_BANdition20260306_7},
             {label: '<img src="legend/PERIMETRETOURCARREE_6.png" /> PERIMETRE TOUR CARREE', layer: layer_PERIMETRETOURCARREE_6},
             {label: 'PLU PRESCRIPTION<br /><table><tr><td style="text-align: center;"><img src="legend/PLUPRESCRIPTION_5_Emplacementréservé0.png" /></td><td>Emplacement réservé</td></tr><tr><td style="text-align: center;"><img src="legend/PLUPRESCRIPTION_5_Espacesboisésclassés1.png" /></td><td>Espaces boisés classés</td></tr><tr><td style="text-align: center;"><img src="legend/PLUPRESCRIPTION_5_HaiesàpréserverautitredelarticleL123157etdelarticleR12311iduCU2.png" /></td><td>Haies à préserver au titre de l\'article L 123-1-5-7° et de l\'article R 123-11 i du CU</td></tr><tr><td style="text-align: center;"><img src="legend/PLUPRESCRIPTION_5_SecteurfaisantlobjetduneOAP3.png" /></td><td>Secteur faisant l\'objet d\'une OAP</td></tr><tr><td style="text-align: center;"><img src="legend/PLUPRESCRIPTION_5_ZonesetsecteurshumidesautitredelartL123157etdelartRduCU4.png" /></td><td>Zones et secteurs humides au titre de l\'art. L 123-1-5-7°et de l\'art. R du CU</td></tr></table>', layer: layer_PLUPRESCRIPTION_5},
             {label: 'PLU ZONAGE<br /><table><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_1AU0.png" /></td><td>1AU</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_A1.png" /></td><td>A</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_Ah2.png" /></td><td>Ah</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_N3.png" /></td><td>N</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_Nj4.png" /></td><td>Nj</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_NL5.png" /></td><td>NL</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_Nn6.png" /></td><td>Nn</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_UA7.png" /></td><td>UA</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_UB8.png" /></td><td>UB</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_UBC9.png" /></td><td>UBC</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_UBe10.png" /></td><td>UBe</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_UC11.png" /></td><td>UC</td></tr><tr><td style="text-align: center;"><img src="legend/PLUZONAGE_4_UL12.png" /></td><td>UL</td></tr></table>', layer: layer_PLUZONAGE_4},]},
             {label: 'FIBRE<br /><table><tr><td style="text-align: center;"><img src="legend/FIBRE_3_DEPLOYE0.png" /></td><td>DEPLOYE</td></tr><tr><td style="text-align: center;"><img src="legend/FIBRE_3_ENCOURSDEDEPLOIEMENT1.png" /></td><td>EN COURS DE DEPLOIEMENT</td></tr></table>', layer: layer_FIBRE_3},
             {label: 'ZONES DISTRIBUTION<br /><table><tr><td style="text-align: center;"><img src="legend/ZONESDISTRIBUTION_2_00.png" /></td><td>0</td></tr><tr><td style="text-align: center;"><img src="legend/ZONESDISTRIBUTION_2_11.png" /></td><td>1</td></tr><tr><td style="text-align: center;"><img src="legend/ZONESDISTRIBUTION_2_22.png" /></td><td>2</td></tr><tr><td style="text-align: center;"><img src="legend/ZONESDISTRIBUTION_2_33.png" /></td><td>3</td></tr><tr><td style="text-align: center;"><img src="legend/ZONESDISTRIBUTION_2_44.png" /></td><td>4</td></tr><tr><td style="text-align: center;"><img src="legend/ZONESDISTRIBUTION_2_55.png" /></td><td>5</td></tr><tr><td style="text-align: center;"><img src="legend/ZONESDISTRIBUTION_2_66.png" /></td><td>6</td></tr><tr><td style="text-align: center;"><img src="legend/ZONESDISTRIBUTION_2_77.png" /></td><td>7</td></tr><tr><td style="text-align: center;"><img src="legend/ZONESDISTRIBUTION_2_88.png" /></td><td>8</td></tr><tr><td style="text-align: center;"><img src="legend/ZONESDISTRIBUTION_2_99.png" /></td><td>9</td></tr><tr><td style="text-align: center;"><img src="legend/ZONESDISTRIBUTION_2_1010.png" /></td><td>10</td></tr></table>', layer: layer_ZONESDISTRIBUTION_2},
-        {label: '<b>CARTES</b>',  selectAllCheckbox: true, children: [
+        {label: '<b>CARTES</b>', collapsed: true, selectAllCheckbox: true, children: [
             {label: "Courbes de niveau", layer: layer_Courbesdeniveau_1},
-            {label: "OpenStreetMap", layer: layer_OpenStreetMap_0, radioGroup: 'bm' },]},]
+            {label: "OpenStreetMap", layer: layer_OpenStreetMap_0},]},]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
             //selectorBack: false,
