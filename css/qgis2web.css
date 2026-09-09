@@ -194,10 +194,15 @@
             justify-content: center;
             align-items: center;
         }
+        .leaflet-marker-icon{
+            white-space: nowrap;
+        }
+        
         .leaflet-control-layers-expanded .leaflet-control-layers-toggle {
             display: none;
         }
-        .css_ZONESDISTRIBUTION_2 {
+        .css_ZONESDISTRIBUTION_1 {
+            pointer-events: none!important;
             text-shadow: -2px -2px 0 #fafafa,
                 -2px -1px 0 #fafafa,
                 -2px 0px 0 #fafafa,
@@ -223,7 +228,8 @@
                 2px 1px 0 #fafafa,
                 2px 2px 0 #fafafa;
         }
-        .css_PLUZONAGE_6 {
+        .css_PLUZONAGE_5 {
+            pointer-events: none!important;
             text-shadow: -4px -4px 0 #fafafa,
                 -4px -3px 0 #fafafa,
                 -4px -2px 0 #fafafa,
